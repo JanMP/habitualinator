@@ -1,0 +1,8 @@
+{
+  "name": "habitualinator",
+  "app_id": "71aa6530",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
