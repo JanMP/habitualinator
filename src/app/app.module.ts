@@ -7,9 +7,11 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
-
+import { EditHabitPage } from '../pages/edit-habit/edit-habit';
+import { HabitListItemComponent } from '../components/habit-list-item/habit-list-item';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { HabitsProvider } from '../providers/habits/habits';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    EditHabitPage,
+    HabitListItemComponent
   ],
   imports: [
     BrowserModule,
@@ -29,12 +33,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    EditHabitPage,
+    HabitListItemComponent
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    HabitsProvider
   ]
 })
 export class AppModule {}

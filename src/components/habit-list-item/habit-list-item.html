@@ -1,0 +1,31 @@
+<!-- Generated template for the HabitListItemComponent component -->
+<ion-item-sliding #item>
+  <ion-item>
+    <h2>{{habit.title}}</h2>
+    <p>{{habit.description}}</p>
+    <p>doneToday: {{habit.doneToday()}}</p>
+    <p>id: {{habit.id}}</p>
+  </ion-item>
+  <ion-item-options side="left">
+    <button *ngIf="!habit.doneToday(); else elseButton" ion-button class="slide-button" color="secondary" (click)="done.emit(habit.id); item.close()">
+      <ion-icon name="checkmark"></ion-icon>
+      Done
+    </button>
+    <ng-template #elseButton>
+      <button #elseButton ion-button class="slide-button" color="light" (click)="done.emit(habit.id); item.close()">
+        <ion-icon name="close"></ion-icon>
+        not Done
+      </button>
+    </ng-template>
+  </ion-item-options>
+  <ion-item-options side="right">
+    <button ion-button class="slide-button" color="primary" (click)="edit.emit(habit.id); item.close()">
+      <ion-icon name="create"></ion-icon>
+      Edit
+    </button>
+    <button ion-button class="slide-button" color="danger" (click)="handleDelete(item)">
+      <ion-icon name="trash"></ion-icon>
+      Delete
+    </button>
+  </ion-item-options>
+</ion-item-sliding>
