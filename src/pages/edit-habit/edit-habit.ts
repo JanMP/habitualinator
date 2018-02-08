@@ -26,7 +26,7 @@ export class EditHabitPage {
     public navParams: NavParams,
     public habits: HabitsProvider
   ) {
-    this.newHabit = navParams.get('') || false;
+    this.newHabit = navParams.get('newHabit') || false;
     if (this.newHabit) {
       console.log('creating new habit')
       this.habit = {
