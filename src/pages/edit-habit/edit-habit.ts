@@ -45,7 +45,7 @@ export class EditHabitPage {
 
   save() {
     if (this.newHabit) {
-      this.habits.adHabit(this.habit.title, this.habit.description);
+      this.habits.addHabit(this.habit.title, this.habit.description);
     } else {
       this.habits.setHabit(this.habit);
     }

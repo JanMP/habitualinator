@@ -12,6 +12,7 @@ import { HabitListItemComponent } from '../components/habit-list-item/habit-list
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HabitsProvider } from '../providers/habits/habits';
+import { NativeStorage } from "@ionic-native/native-storage";
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { HabitsProvider } from '../providers/habits/habits';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    NativeStorage,
     HabitsProvider
   ]
 })

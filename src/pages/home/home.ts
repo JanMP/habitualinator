@@ -20,7 +20,7 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit() {
-    this.habits.getHabits().subscribe((v) => this.habitList = v);
+    this.habits.subscribe((v) => this.habitList = v);
   }
 
   add() {
