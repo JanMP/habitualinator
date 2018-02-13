@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { AlertController } from 'ionic-angular';
-import { Habit } from "../../providers/habits/habits";
+import { Habit } from "../../providers/habits/habit";
 
 @Component({
   selector: "habit-list-item",

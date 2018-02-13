@@ -1,10 +1,7 @@
 import { Component } from "@angular/core";
 import { IonicPage, ViewController, NavParams } from "ionic-angular";
-import {
-  HabitsProvider,
-  Habit,
-  HabitData
-} from "../../providers/habits/habits";
+import { HabitsProvider } from "../../providers/habits/habits";
+import { Habit, HabitData } from "../../providers/habits/habit"
 /**
  * Generated class for the EditHabitPage page.
  *
