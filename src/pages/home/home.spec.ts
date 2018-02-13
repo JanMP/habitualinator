@@ -1,8 +1,14 @@
 import { async, TestBed } from '@angular/core/testing';
-import { IonicModule, NavController } from 'ionic-angular';
+import { IonicModule, NavController, ModalController } from "ionic-angular";
 
 import { HomePage } from './home';
+import { HabitListItemComponent } from "../../components/habit-list-item/habit-list-item";
 import { HabitsProvider } from '../../providers/habits/habits';
+
+import { Platform } from "ionic-angular";
+import { NativeStorage } from "@ionic-native/native-storage";
+
+import { EditHabitPage } from "../edit-habit/edit-habit";
 
 describe('Page: HomePage', () => {
   let fixture;
@@ -10,13 +16,19 @@ describe('Page: HomePage', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [HomePage],
+      declarations: [
+        HomePage,
+        HabitListItemComponent,
+        EditHabitPage,
+      ],
       imports: [
         IonicModule.forRoot(HomePage)
       ],
       providers: [
        NavController,
-       HabitsProvider
+       HabitsProvider,
+       ModalController,
+       NativeStorage
       ]
     })
   }));
@@ -30,4 +42,7 @@ describe('Page: HomePage', () => {
     expect(component instanceof HomePage).toBe(true);
   });
 
+  it ('should have a method add()', () => {
+    expect(typeof component.add).toBe('function');
+  });
 });
