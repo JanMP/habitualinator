@@ -27,7 +27,7 @@ describe("Class: Habit", () => {
 
   it("should have a method setDoneOnDate that adds or removes an element of datesDone", () => {
     const date = new Date();
-    const dateId = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`;
+    const dateId = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
     expect(habit.datesDone.has(dateId)).toBe(false);
     habit.setDoneOnDate(date, true);
     expect(habit.datesDone.has(dateId)).toBe(true);
@@ -37,7 +37,7 @@ describe("Class: Habit", () => {
 
   it("should have a method toggleDoneOnDate that adds and removes elements of datesDone", () => {
     const date = new Date();
-    const dateId = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`;
+    const dateId = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
     expect(habit.datesDone.has(dateId)).toBe(false);
     habit.toggleDoneOnDate(date);
     expect(habit.datesDone.has(dateId)).toBe(true);
@@ -47,9 +47,42 @@ describe("Class: Habit", () => {
 
   it("should have a method doneOnDate that returns true if that date is in datesDone", () => {
     const date = new Date();
-    const dateId = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`;
+    const dateId = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
     expect(habit.doneOnDate(date)).toBe(false);
     habit.datesDone.add(dateId);
     expect(habit.doneOnDate(date)).toBe(true);
   });
+
+  it("should have a method streak, that gives the length of the streak leading to and including a given date", () => {
+    for (let day = 1; day <= 20; day++) {
+      let date = new Date(2001, 2, day);
+      let dateId = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+      habit.datesDone.add(dateId);
+    }
+    for(let day = 1; day <= 10; day++) {
+      let date = new Date(2001, 3, day);
+      let dateId = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+      habit.datesDone.add(dateId)
+    }
+    expect(habit.doneOnDate(new Date(2001, 3, 10))).toBe(true);
+    expect(habit.doneOnDate(new Date(2001, 3, 12))).toBe(false);
+    expect(habit.streak(new Date(2001, 3, 10))).toBe(10);
+    expect(habit.streak(new Date(2001, 3, 11))).toBe(0);
+    expect(habit.streak(new Date(2001, 3, 3))).toBe(3);
+  });
+
+  it("should have a method longestStreak that returns the longest Streak", () => {
+    for(let day = 1; day <= 10; day++) {
+      let date = new Date(2001, 3, day);
+      let dateId = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+      habit.datesDone.add(dateId)
+    }
+    expect(habit.longestStreak()).toBe(10)
+    for (let day = 1; day <= 20; day++) {
+      let date = new Date(2001, 2, day);
+      let dateId = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+      habit.datesDone.add(dateId);
+    }
+    expect(habit.longestStreak()).toBe(20);
+  })
 });

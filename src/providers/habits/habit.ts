@@ -25,7 +25,7 @@ export class Habit implements HabitData {
   }
 
   private dateId(date: Date): string {
-    return `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`;
+    return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
   }
 
   public doneToday(): boolean {
@@ -58,5 +58,30 @@ export class Habit implements HabitData {
     } else {
       this.datesDone.add(this.dateId(date));
     }
+  }
+
+  public streak(date: Date): number {
+    const s: (d: Date, count: number) => number = (d, count) => {
+      if (this.doneOnDate(d)) {
+        return s(new Date(d.valueOf() - 24 * 60 * 60 * 1000), count + 1);
+      } else {
+        return count;
+      }
+    };
+    return s(date, 0);
+  }
+
+  public currentStreak() : number {
+    return this.streak(new Date())
+  }
+
+  public longestStreak() : number {
+    let result = 0;
+    for (let dateId of Array.from(this.datesDone)) {
+      let [year, month, day] = dateId.split("-")
+      let streak = this.streak(new Date(Number(year), Number(month), Number(day)))
+      if(streak > result) result = streak;
+    }
+    return result;
   }
 }
